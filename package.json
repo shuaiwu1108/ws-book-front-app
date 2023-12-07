@@ -1,0 +1,17 @@
+{
+    "id": "ws-book-front",
+    "name": "小说App模板",
+    "displayName": "小说App模板",
+    "version": "3.1.7",
+    "description": "基于uni-app开发的小说阅读",
+    "keywords": [
+        "nvue",
+        "小说模板"
+    ],
+    "dcloudext": {
+        "category": [
+            "前端页面模板",
+            "uni-app前端项目模板"
+        ]
+    }
+}

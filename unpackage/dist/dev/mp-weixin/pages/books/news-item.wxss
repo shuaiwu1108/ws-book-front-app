@@ -1,0 +1,126 @@
+
+.view.data-v-2eb10482 {
+	flex-direction: column;
+}
+.flex-row.data-v-2eb10482 {
+	flex-direction: row;
+}
+.flex-col.data-v-2eb10482 {
+	flex-direction: column;
+}
+.list-cell.data-v-2eb10482 {
+	padding: 0 15px;
+}
+.uni-list-cell-hover.data-v-2eb10482 {
+	background-color: #eeeeee;
+}
+.media-item.data-v-2eb10482 {
+	position: relative;
+	flex: 1;
+	flex-direction: column;
+	padding: 10px 15px 10px 15px;
+}
+.media-item-line.data-v-2eb10482 {
+	position: absolute;
+	left: 15px;
+	right: 15px;
+	bottom: 0;
+	height: 1px;
+	background-color: #ebebeb;
+}
+.media-image-right.data-v-2eb10482 {
+	flex-direction: row;
+}
+.media-image-left.data-v-2eb10482 {
+	flex-direction: row-reverse;
+}
+.media-title.data-v-2eb10482 {
+	flex: 1;
+}
+.media-title.data-v-2eb10482 {
+	lines: 3;
+	text-overflow: ellipsis;
+	font-size: 15px;
+	color: #555555;
+}
+.media-title2.data-v-2eb10482 {
+	flex: 1;
+	margin-top: 0px;
+	line-height: 20px;
+	max-height: 100px;
+	min-height: 100px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.image-section.data-v-2eb10482 {
+	margin-top: 10px;
+	flex-direction: row;
+	justify-content: space-between;
+}
+.image-section-right.data-v-2eb10482 {
+	margin-top: 0;
+	margin-left: 5px;
+	width: 112px;
+	height: 73px;
+}
+.image-section-left.data-v-2eb10482 {
+	margin-top: 0;
+	margin-right: 5px;
+	width: 112px;
+	height: 73px;
+}
+.image-list1.data-v-2eb10482 {
+	height: 240px;
+}
+.image-list2.data-v-2eb10482 {
+	width: 112px;
+	height: 110px;
+}
+.image-list3.data-v-2eb10482 {
+	width: 112px;
+	height: 73px;
+}
+.media-info.data-v-2eb10482 {
+	flex-direction: row;
+	align-items: center;
+}
+.info-text.data-v-2eb10482 {
+	margin-right: 10px;
+	color: #999999;
+	font-size: 12px;
+}
+.media-foot.data-v-2eb10482 {
+	margin-top: 12px;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+.close-view.data-v-2eb10482 {
+	position: relative;
+	align-items: center;
+	flex-direction: row;
+	width: 20px;
+	height: 15px;
+	line-height: 15px;
+	border-width: 1rpx;
+	border-style: solid;
+	border-color: #aaaaaa;
+	border-radius: 4px;
+	justify-content: center;
+	text-align: center;
+}
+.close-l.data-v-2eb10482 {
+	position: absolute;
+	width: 9px;
+	height: 1px;
+	background-color: #aaaaaa;
+}
+.close-h.data-v-2eb10482 {
+	-webkit-transform: rotate(45deg);
+	        transform: rotate(45deg);
+}
+.close-v.data-v-2eb10482 {
+	-webkit-transform: rotate(-45deg);
+	        transform: rotate(-45deg);
+}
+

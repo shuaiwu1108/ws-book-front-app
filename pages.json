@@ -1,0 +1,35 @@
+{
+  "pages": [{
+      "path": "pages/books/index",
+      "style": {}
+    },
+    {
+      "path": "pages/books/detail",
+      "style": {
+        "app-plus": {
+          "titleNView": {
+            "type": "transparent"
+          }
+        }
+      }
+    },
+	{
+		"path": "pages/books/detail-catalog"
+	}
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "精品小说",
+    "navigationBarBackgroundColor": "#2F85FC",
+    "backgroundColor": "#FFFFFF"
+  },
+  "rightWindow": {
+    "path": "responsive/right-window.vue",
+    "style": {
+      "width": "calc(100vw - 450px)"
+    },
+    "matchMedia": {
+      "minWidth": 768
+    }
+  }
+}
