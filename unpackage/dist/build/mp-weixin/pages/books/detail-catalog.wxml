@@ -1,0 +1,1 @@
+<view class="content"><view class="article-meta"><text class="catalog-content">{{catalogInfo}}</text></view></view>

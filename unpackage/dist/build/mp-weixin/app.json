@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "pages/books/index",
+    "pages/books/detail",
+    "pages/books/detail-catalog"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "精品小说",
+    "navigationBarBackgroundColor": "#2F85FC",
+    "backgroundColor": "#FFFFFF"
+  },
+  "usingComponents": {}
+}

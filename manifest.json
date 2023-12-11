@@ -6,7 +6,8 @@
     "versionCode" : 1,
     "transformPx" : false,
     "uniStatistics" : {
-        "enable" : false
+        "enable" : false,
+        "version" : "2"
     },
     "compatConfig" : {
         "MODE" : 2 // 2代表兼容Vue2模式，3代表非兼容Vue2模式
@@ -32,14 +33,17 @@
                 "permissionPhoneState" : {
                     "request" : "none"
                 },
-                "abiFilters" : [ "armeabi-v7a" ]
+                "abiFilters" : [ "armeabi-v7a", "arm64-v8a", "x86" ]
             },
             "ios" : {
-                "idfa" : false
+                "idfa" : false,
+                "dSYMs" : false
             },
             /* ios打包配置 */
             "sdkConfigs" : {
-                "ad" : {}
+                "ad" : {
+                    "360" : {}
+                }
             },
             "icons" : {
                 "android" : {
@@ -72,7 +76,13 @@
                         "spotlight@3x" : "unpackage/res/icons/120x120.png"
                     }
                 }
+            },
+            "splashscreen" : {
+                "useOriginalMsgbox" : true
             }
+        },
+        "uniStatistics" : {
+            "enable" : true
         }
     },
     "quickapp" : {},
@@ -102,6 +112,9 @@
             "treeShaking" : {
                 "enable" : true
             }
+        },
+        "devServer" : {
+            "https" : false
         }
     },
     "vueVersion" : "2"

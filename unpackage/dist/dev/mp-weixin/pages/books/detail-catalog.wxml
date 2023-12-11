@@ -1,1 +1,1 @@
-<view class="content"><view class="article-meta"><text class="catalog-content">{{catalogInfo}}</text></view></view>
+<view class="content"><view class="article-meta"><rich-text class="catalog-content" nodes="{{catalogInfo}}"></rich-text></view></view>

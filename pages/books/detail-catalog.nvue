@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		<view class="article-meta">
-			<text class="catalog-content">{{catalogInfo}}</text> 
+			<rich-text class="catalog-content" :nodes="catalogInfo"></rich-text> 
 		</view>
 	</view>
 </template>
@@ -36,7 +36,7 @@
 			},
 			getDetail() {
 				uni.request({
-					url: 'http://192.168.1.20:9090/api/bookCatalog/one',
+					url: this.$host + '/api/bookCatalog/one',
 					data: this.banner,
 					method: 'POST',
 					success: (result) => {

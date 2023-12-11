@@ -1,11 +1,13 @@
 import App from './App.vue'
 
-const host = 'https://unidemo.dcloud.net.cn/';
+const host = 'http://127.0.0.1:9090';
+const miniourl = 'http://127.0.0.1:9000';
 
 // #ifndef VUE3
 import Vue from 'vue'
 Vue.config.productionTip = false
 Vue.prototype.$host = host;
+Vue.prototype.$minioUrl = miniourl;
 App.mpType = 'app'
 const app = new Vue({
   ...App

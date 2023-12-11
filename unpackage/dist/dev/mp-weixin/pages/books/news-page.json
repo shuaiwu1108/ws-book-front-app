@@ -1,7 +1,7 @@
 {
+  "component": true,
   "usingComponents": {
     "uni-load-more": "/components/uni-load-more",
     "book-info": "/pages/books/news-item"
-  },
-  "component": true
+  }
 }

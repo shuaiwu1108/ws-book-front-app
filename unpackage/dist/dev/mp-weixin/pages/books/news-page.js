@@ -223,9 +223,7 @@ var _default = {
       this.isNoData = false;
       this.requestParams.pageIndex = this.listCount;
       uni.request({
-        // url: this.$host + 'api/news',
-        // url: 'https://unidemo.dcloud.net.cn/api/news',
-        url: 'http://192.168.1.20:9090/api/book/list',
+        url: this.$host + '/api/book/list',
         data: this.requestParams,
         method: 'POST',
         success: function success(result) {

@@ -212,7 +212,7 @@ var _default = {
     getDetail: function getDetail() {
       var _this = this;
       uni.request({
-        url: 'http://192.168.1.20:9090/api/bookCatalog/one',
+        url: this.$host + '/api/bookCatalog/one',
         data: this.banner,
         method: 'POST',
         success: function success(result) {
