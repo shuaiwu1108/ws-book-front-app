@@ -1,17 +1,10 @@
 <template>
 	<view class="media-item view" @click="click">
-		<view class="view"
-			:style="{flexDirection: (bookInfo.article_type === 1 || bookInfo.article_type === 2)?(bookInfo.article_type === 2 ?'row':'row-reverse'):'column' }">
-			<text class="media-title" :class="{'media-title2': bookInfo.article_type === 1 || bookInfo.article_type === 2}">{{bookInfo.description}}</text>
-			<view v-if="bookInfo.image_list || bookInfo.icon" class="image-section flex-row"
-				:class="{'image-section-right': bookInfo.article_type === 2, 'image-section-left': bookInfo.article_type === 1}">
-				<image :fade-show="false" class="image-list1"
-					:class="{'image-list2': bookInfo.article_type === 1 || bookInfo.article_type === 2}"
-					v-if="bookInfo.icon" :src="bookInfo.icon"></image>
-				<template v-if="bookInfo.image_list">
-					<image :fade-show="false" class="image-list3" :src="source.url"
-						v-for="(source, i) in bookInfo.image_list" :key="i" />
-				</template>
+		<view class="view">
+			<text class="media-title2">{{bookInfo.description}}</text>
+			<view v-if="bookInfo.icon" class="image-section flex-row image-section-left" >
+				<image :fade-show="false" class="image-list1 image-list2"
+					v-if="bookInfo.iconFileUrl" :src="bookInfo.iconFileUrl"></image>
 			</view>
 		</view>
 		<view class="media-foot flex-row">
@@ -45,15 +38,11 @@
 
 <style scoped>
 	.view {
-		flex-direction: column;
+		flex-direction: row-reverse;
 	}
 
 	.flex-row {
 		flex-direction: row;
-	}
-
-	.flex-col {
-		flex-direction: column;
 	}
 
 	.list-cell {

@@ -3,6 +3,7 @@
 		<view class="article-meta">
 			<rich-text class="catalog-content" :nodes="catalogInfo"></rich-text> 
 		</view>
+		<uni-pagination title="标题文字" total="20" prev-text="上一章" next-text="下一章" pageSize=1></uni-pagination>
 	</view>
 </template>
 

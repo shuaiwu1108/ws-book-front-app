@@ -1,5 +1,5 @@
 {
   "usingComponents": {
-    "news-page": "/pages/books/news-page"
+    "book-page": "/pages/books/book-page"
   }
 }

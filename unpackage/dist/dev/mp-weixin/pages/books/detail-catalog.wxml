@@ -1,1 +1,1 @@
-<view class="content"><view class="article-meta"><rich-text class="catalog-content" nodes="{{catalogInfo}}"></rich-text></view></view>
+<view class="content"><view class="article-meta"><rich-text class="catalog-content" nodes="{{catalogInfo}}"></rich-text></view><uni-pagination vue-id="b0a5fe6a-1" title="标题文字" total="20" prev-text="上一章" next-text="下一章" pageSize="1" bind:__l="__l"></uni-pagination></view>

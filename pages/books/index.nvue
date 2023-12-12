@@ -18,7 +18,7 @@
     <swiper class="tab-box" ref="swiper1" :current="tabIndex" :duration="300" @change="onswiperchange" @transition="onswiperscroll"
       @animationfinish="animationfinish" @onAnimationEnd="animationfinish">
       <swiper-item class="swiper-item" v-for="(page, index) in tabList" :key="index">
-        <newsPage class="page-item" :booktype="page.booktype" :ref="'page' + index"></newsPage>
+        <bookPage class="page-item" :booktype="page.booktype" :ref="'page' + index"></bookPage>
       </swiper-item>
     </swiper>
   </view>
@@ -29,7 +29,7 @@
   const dom = weex.requireModule('dom');
   // #endif
 
-  import newsPage from './news-page.nvue';
+  import bookPage from './book-page.nvue';
 
   // 缓存每页最多
   const MAX_CACHE_DATA = 100;
@@ -39,7 +39,7 @@
 
   export default {
     components: {
-      newsPage
+      bookPage
     },
     data() {
       return {

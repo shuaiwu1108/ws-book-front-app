@@ -1,0 +1,153 @@
+<template>
+	<view class="page-news">
+		<scroll-view class="listview" scroll-y @scrolltolower="loadMore()">
+			<view v-for="(item, index) in dataList" :key="item.id">
+				<book-info :bookInfo="item" @click="goDetail(item)"></book-info>
+			</view>
+			<view class="loading-more" v-if="isLoading || dataList.length > 1">
+				<text class="loading-more-text">{{loadingText}}</text>
+			</view>
+		</scroll-view>
+	</view>
+</template>
+
+<script>
+	import {
+		friendlyDate
+	} from '@/common/util.js';
+
+	import bookInfo from './book-info.nvue';
+	import uniLoadMore from '@/components/uni-load-more.vue';
+
+	export default {
+		components: {
+			uniLoadMore,
+			bookInfo
+		},
+		props: {
+			booktype: {
+				type: [String],
+				default: ''
+			}
+		},
+		data() {
+			return {
+				dataList: [],
+				isLoading: false,
+				loadingText: '加载中...',
+				isNoData: false,
+				listCount: 1
+			}
+		},
+		created() {
+			this.requestParams = {
+				source: "bqg",
+				bookType: this.booktype,
+				pageIndex: 1,
+				pageSize: 10
+			};
+		},
+		methods: {
+			loadData() {
+				if (this.isLoading) {
+					return;
+				}
+				
+				if(this.isNoData){
+					this.loadingText = '到底啦'
+					return;
+				}
+
+				this.isLoading = true;
+				this.isNoData = false;
+				this.requestParams.pageIndex = this.listCount;
+
+				uni.request({
+					url: this.$host + '/api/book/list',
+					data: this.requestParams,
+					method: 'POST',
+					success: (result) => {
+						const data = result.data;
+						if(data == null || data.length < 10){
+							this.isNoData = true;
+							this.loadingText = '到底啦'
+							return;
+						}
+
+						const data_list = data.map((book) => {
+							return {
+								id: book.id,
+								article_type: 1,
+								description: book.description,
+								icon: book.icon,
+								name: book.name,
+								author_name: book.authorId,
+								book_source: book.bookSource,
+								iconFileUrl: this.$minioUrl+ book.iconFileUrl
+							};
+						});
+						this.dataList = this.dataList.concat(data_list);
+						this.listCount = this.listCount + 1
+					},
+					fail: (err) => {
+						if (this.dataList.length == 0) {
+							this.isNoData = true;
+							this.loadingText = "异常了，没有找到数据";
+						}
+					},
+					complete: (e) => {
+						this.isLoading = false;
+					}
+				});
+			},
+			loadMore() {
+				this.loadData();
+			},
+			goDetail(detail) {
+				uni.navigateTo({
+					url: './detail?query=' + encodeURIComponent(JSON.stringify(detail))
+				});
+			}
+		}
+	}
+</script>
+
+<style scoped>
+	.page-news {
+		flex: 1;
+		flex-direction: column;
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+	}
+
+	.listview {
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		/* #ifndef APP-NVUE */
+		display: flex;
+		flex-direction: column;
+		/* #endif */
+		/* #ifndef MP-ALIPAY */
+		flex-direction: column;
+		/* #endif */
+	}
+
+	.loading-more {
+		align-items: center;
+		justify-content: center;
+		padding-top: 14px;
+		padding-bottom: 14px;
+		text-align: center;
+	}
+
+	.loading-more-text {
+		font-size: 28upx;
+		color: #999;
+	}
+</style>
