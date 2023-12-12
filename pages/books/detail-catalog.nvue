@@ -1,9 +1,13 @@
 <template>
 	<view class="content">
 		<view class="article-meta">
-			<rich-text class="catalog-content" :nodes="catalogInfo"></rich-text> 
+			<scroll-view id="scroll" style="height:100vh" :scroll-top="top" scroll-y scroll-with-animation>
+			  <view id="top"></view>
+			  <mp-html ref="article" class="catalog-content" :content="catalogInfo" :use-anchor="anchor"></mp-html>
+			</scroll-view>
 		</view>
-		<uni-pagination title="标题文字" total="20" prev-text="上一章" next-text="下一章" pageSize=1></uni-pagination>
+		
+		<uni-pagination @change="change()" :current="current" :total="total" prev-text="上一章" next-text="下一章" pageSize=1></uni-pagination>
 	</view>
 </template>
 
@@ -11,38 +15,77 @@
 	export default {
 		data() {
 			return {
-				banner: {},
+				total:1,
+				current:1,
+				bookCatalog: {},
 				dataList: [],
-				catalogInfo: ''
+				catalogInfo: '',
+				anchor: true,
+				top: 0,
+				ctx: null,
 			}
 		},
 		onLoad(event) {
-			// 目前在某些平台参数会被主动 decode，暂时这样处理。
-			this.load(event.query);
+			this.ctx = this.$refs.article;
+			this.ctx.in(this, '#scroll', 'top');
+			this.load(event.bookCatalog);
+			this.getCurrentLocation(this.bookCatalog);
 		},
 		methods: {
 			load(e) {
 				var p = decodeURIComponent(e);
 				try {
-					this.banner = JSON.parse(p);
+					this.bookCatalog = JSON.parse(p);
 				} catch (error) {
-					this.banner = JSON.parse(p);
+					this.bookCatalog = JSON.parse(p);
 				}
 
 				uni.setNavigationBarTitle({
-					title: this.banner.catalogName
+					title: this.bookCatalog.catalogName
 				});
 
-				this.getDetail();
+				this.getContent();
 			},
-			getDetail() {
+			getContent() {
 				uni.request({
-					url: this.$host + '/api/bookCatalog/one',
-					data: this.banner,
-					method: 'POST',
+					url: this.$minioUrl + this.bookCatalog.catalogFileUrl,
+					method: 'GET',
 					success: (result) => {
 						const data = result.data;
 						this.catalogInfo = data
+					}
+				});
+			},
+			change(e){
+				console.log(e);
+				uni.request({
+					url: this.$host + '/api/bookCatalog/getCatalogByLocation',
+					data: {
+						bookId: this.bookCatalog.bookId,
+						current: e.current
+					},
+					method: 'POST',
+					success: (result) => {
+						const data = result.data;
+						this.load(encodeURIComponent(JSON.stringify(data)));
+						this.getCurrentLocation(this.bookCatalog);
+						this.ctx.navigateTo('top').then(() => {
+						    console.log('跳转成功')
+						}).catch(err => {
+							console.log('跳转失败：', err)
+						})
+					}
+				});
+			},
+			getCurrentLocation(e){
+				uni.request({
+					url: this.$host + '/api/bookCatalog/getCurrentLocation',
+					data: e,
+					method: 'POST',
+					success: (result) => {
+						const data = result.data;
+						this.total = data.total;
+						this.current = data.current
 					}
 				});
 			}
@@ -51,89 +94,19 @@
 </script>
 
 <style>
-	/* #ifndef APP-PLUS */
-	page {
-		min-height: 100%;
-	}
-
-	/* #endif */
-
-	.banner {
-		height: 180px;
-		position: relative;
-		background-color: #ccc;
-		flex-direction: row;
-		overflow: hidden;
-	}
-
-	.banner-img {
-		flex: 1;
-	}
-
-	.title-area {
-		position: absolute;
-		left: 15px;
-		right: 15px;
-		bottom: 15px;
-		z-index: 11;
-	}
-
-	.title-text {
-		font-size: 16px;
-		font-weight: 400;
-		line-height: 20px;
-		lines: 2;
-		color: #ffffff;
-		overflow: hidden;
-	}
-
 	.article-meta {
-		padding: 10px 10px;
+		padding: 10px 5px;
 		flex-direction: row;
 		align-items: center;
 		justify-content: flex-start;
 	}
 
-	.article-meta-text {
-		color: gray;
-	}
-
-	.article-text {
-		font-size: 12px;
-		line-height: 25px;
-		margin: 0 10px;
-	}
-
-	.article-author {
-		font-size: 15px;
-	}
-
-	.article-time {
-		font-size: 15px;
-	}
-
-	.article-content {
-		font-size: 15px;
-		padding: 0 15px;
-		margin-bottom: 15px;
-		overflow: hidden;
-	}
-
-	/* #ifdef H5 */
-
-	.article-content {
-		line-height: 1.8;
-	}
-
-	.article-content img {
-		max-width: 100%;
-	}
-
-	/* #endif */
-
 	.catalog-content {
 		font-size: 16px;
-		padding: 0 10px;
 		line-height: 1.8;
+	}
+	
+	.content{
+		padding: 0px 10px 10px 10px;
 	}
 </style>

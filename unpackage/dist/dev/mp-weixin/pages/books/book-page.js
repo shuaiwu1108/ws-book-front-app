@@ -145,7 +145,7 @@ var _util = __webpack_require__(/*! @/common/util.js */ 68);
 //
 var bookInfo = function bookInfo() {
   __webpack_require__.e(/*! require.ensure | pages/books/book-info */ "pages/books/book-info").then((function () {
-    return resolve(__webpack_require__(/*! ./book-info.nvue */ 91));
+    return resolve(__webpack_require__(/*! ./book-info.nvue */ 99));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var uniLoadMore = function uniLoadMore() {

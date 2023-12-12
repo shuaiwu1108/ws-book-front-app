@@ -22,7 +22,7 @@ wx.__webpack_require_UNI_MP_PLUGIN__ = __webpack_require__;
 var host = 'http://127.0.0.1:9090';
 
 //const host = 'http://223.76.234.112:9293/ltqf'
-var miniourl = 'http://192.168.0.244:9000';
+var miniourl = 'http://10.10.0.2:9000';
 _vue.default.config.productionTip = false;
 _vue.default.prototype.$host = host;
 _vue.default.prototype.$minioUrl = miniourl;

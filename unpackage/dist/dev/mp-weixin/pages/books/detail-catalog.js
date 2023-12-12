@@ -102,8 +102,11 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
+    mpHtml: function () {
+      return Promise.all(/*! import() | uni_modules/mp-html/components/mp-html/mp-html */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/mp-html/components/mp-html/mp-html")]).then(__webpack_require__.bind(null, /*! @/uni_modules/mp-html/components/mp-html/mp-html.vue */ 123))
+    },
     uniPagination: function () {
-      return Promise.all(/*! import() | uni_modules/uni-pagination/components/uni-pagination/uni-pagination */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-pagination/components/uni-pagination/uni-pagination")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-pagination/components/uni-pagination/uni-pagination.vue */ 78))
+      return Promise.all(/*! import() | uni_modules/uni-pagination/components/uni-pagination/uni-pagination */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-pagination/components/uni-pagination/uni-pagination")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-pagination/components/uni-pagination/uni-pagination.vue */ 132))
     },
   }
 } catch (e) {
@@ -208,40 +211,85 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
-      banner: {},
+      total: 1,
+      current: 1,
+      bookCatalog: {},
       dataList: [],
-      catalogInfo: ''
+      catalogInfo: '',
+      anchor: true,
+      top: 0,
+      ctx: null
     };
   },
   onLoad: function onLoad(event) {
-    // 目前在某些平台参数会被主动 decode，暂时这样处理。
-    this.load(event.query);
+    this.ctx = this.$refs.article;
+    this.ctx.in(this, '#scroll', 'top');
+    this.load(event.bookCatalog);
+    this.getCurrentLocation(this.bookCatalog);
   },
   methods: {
     load: function load(e) {
       var p = decodeURIComponent(e);
       try {
-        this.banner = JSON.parse(p);
+        this.bookCatalog = JSON.parse(p);
       } catch (error) {
-        this.banner = JSON.parse(p);
+        this.bookCatalog = JSON.parse(p);
       }
       uni.setNavigationBarTitle({
-        title: this.banner.catalogName
+        title: this.bookCatalog.catalogName
       });
-      this.getDetail();
+      this.getContent();
     },
-    getDetail: function getDetail() {
+    getContent: function getContent() {
       var _this = this;
       uni.request({
-        url: this.$host + '/api/bookCatalog/one',
-        data: this.banner,
-        method: 'POST',
+        url: this.$minioUrl + this.bookCatalog.catalogFileUrl,
+        method: 'GET',
         success: function success(result) {
           var data = result.data;
           _this.catalogInfo = data;
+        }
+      });
+    },
+    change: function change(e) {
+      var _this2 = this;
+      console.log(e);
+      uni.request({
+        url: this.$host + '/api/bookCatalog/getCatalogByLocation',
+        data: {
+          bookId: this.bookCatalog.bookId,
+          current: e.current
+        },
+        method: 'POST',
+        success: function success(result) {
+          var data = result.data;
+          _this2.load(encodeURIComponent(JSON.stringify(data)));
+          _this2.getCurrentLocation(_this2.bookCatalog);
+          _this2.ctx.navigateTo('top').then(function () {
+            console.log('跳转成功');
+          }).catch(function (err) {
+            console.log('跳转失败：', err);
+          });
+        }
+      });
+    },
+    getCurrentLocation: function getCurrentLocation(e) {
+      var _this3 = this;
+      uni.request({
+        url: this.$host + '/api/bookCatalog/getCurrentLocation',
+        data: e,
+        method: 'POST',
+        success: function success(result) {
+          var data = result.data;
+          _this3.total = data.total;
+          _this3.current = data.current;
         }
       });
     }

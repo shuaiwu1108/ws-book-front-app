@@ -167,7 +167,7 @@ var _default = {
       isNoData: false,
       loadingText: '加载中...',
       listCount: 1,
-      banner: {},
+      bookInfo: {},
       dataList: []
     };
   },
@@ -185,25 +185,23 @@ var _default = {
     load: function load(e) {
       var p = decodeURIComponent(e);
       try {
-        this.banner = JSON.parse(p);
+        this.bookInfo = JSON.parse(p);
       } catch (error) {
-        this.banner = JSON.parse(p);
+        this.bookInfo = JSON.parse(p);
       }
       uni.setNavigationBarTitle({
-        title: this.banner.name
+        title: this.bookInfo.name
       });
-      this.requestParams.bookId = this.banner.id;
+      this.requestParams.bookId = this.bookInfo.id;
       this.loadMore();
     },
     loadData: function loadData() {
       var _this = this;
       if (this.isLoading) {
-        console.log("loadData 1");
         return;
       }
       if (this.isNoData) {
         this.loadingText = '到底啦';
-        console.log("loadData 1");
         return;
       }
       this.isLoading = true;
@@ -239,7 +237,7 @@ var _default = {
     },
     clickCatalog: function clickCatalog(item) {
       uni.navigateTo({
-        url: './detail-catalog?query=' + encodeURIComponent(JSON.stringify(item))
+        url: './detail-catalog?bookCatalog=' + encodeURIComponent(JSON.stringify(item))
       });
     }
   }
