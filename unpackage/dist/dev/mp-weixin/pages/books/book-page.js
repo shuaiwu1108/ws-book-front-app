@@ -212,7 +212,7 @@ var _default = {
               description: book.description,
               icon: book.icon,
               name: book.name,
-              author_name: book.authorId,
+              author_name: book.authorName,
               book_source: book.bookSource,
               iconFileUrl: _this.$minioUrl + book.iconFileUrl
             };

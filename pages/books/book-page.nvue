@@ -81,7 +81,7 @@
 								description: book.description,
 								icon: book.icon,
 								name: book.name,
-								author_name: book.authorId,
+								author_name: book.authorName,
 								book_source: book.bookSource,
 								iconFileUrl: this.$minioUrl+ book.iconFileUrl
 							};

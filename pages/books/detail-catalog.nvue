@@ -1,13 +1,7 @@
 <template>
-	<view class="content">
-		<view class="article-meta">
-			<scroll-view id="scroll" style="height:100vh" :scroll-top="top" scroll-y scroll-with-animation>
-			  <view id="top"></view>
-			  <mp-html ref="article" class="catalog-content" :content="catalogInfo" :use-anchor="anchor"></mp-html>
-			</scroll-view>
-		</view>
-		
-		<uni-pagination @change="change()" :current="current" :total="total" prev-text="上一章" next-text="下一章" pageSize=1></uni-pagination>
+	<view>
+		<mp-html class="catalog-content" ref="article" :content="catalogInfo" :use-anchor="anchor"></mp-html>
+		<uni-pagination class="catalog-pagination" @change="change()" :current="current" :total="total" prev-text="上一章" next-text="下一章" pageSize=1></uni-pagination>
 	</view>
 </template>
 
@@ -21,15 +15,15 @@
 				dataList: [],
 				catalogInfo: '',
 				anchor: true,
-				top: 0,
 				ctx: null,
 			}
 		},
 		onLoad(event) {
-			this.ctx = this.$refs.article;
-			this.ctx.in(this, '#scroll', 'top');
 			this.load(event.bookCatalog);
 			this.getCurrentLocation(this.bookCatalog);
+		},
+		onReady() {
+			this.ctx = this.$refs.article;
 		},
 		methods: {
 			load(e) {
@@ -69,7 +63,7 @@
 						const data = result.data;
 						this.load(encodeURIComponent(JSON.stringify(data)));
 						this.getCurrentLocation(this.bookCatalog);
-						this.ctx.navigateTo('top').then(() => {
+						this.ctx.navigateTo().then(() => {
 						    console.log('跳转成功')
 						}).catch(err => {
 							console.log('跳转失败：', err)
@@ -94,19 +88,13 @@
 </script>
 
 <style>
-	.article-meta {
-		padding: 10px 5px;
-		flex-direction: row;
-		align-items: center;
-		justify-content: flex-start;
-	}
-
 	.catalog-content {
+		padding: 10px 5px;
 		font-size: 16px;
 		line-height: 1.8;
 	}
 	
-	.content{
+	.catalog-pagination{
 		padding: 0px 10px 10px 10px;
 	}
 </style>

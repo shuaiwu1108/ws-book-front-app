@@ -19,10 +19,11 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 // @ts-ignore
 wx.__webpack_require_UNI_MP_PLUGIN__ = __webpack_require__;
-var host = 'http://127.0.0.1:9090';
+// const host = 'http://127.0.0.1:9090';
+// const miniourl = 'http://192.168.0.244:9000';
 
-//const host = 'http://223.76.234.112:9293/ltqf'
-var miniourl = 'http://10.10.0.2:9000';
+var host = 'http://223.76.234.112:9293/ltqf';
+var miniourl = 'http://223.76.234.112:9293/minio';
 _vue.default.config.productionTip = false;
 _vue.default.prototype.$host = host;
 _vue.default.prototype.$minioUrl = miniourl;

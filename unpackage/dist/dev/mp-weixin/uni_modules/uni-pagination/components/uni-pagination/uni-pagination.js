@@ -1,6 +1,6 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["uni_modules/uni-pagination/components/uni-pagination/uni-pagination"],{
 
-/***/ 132:
+/***/ 86:
 /*!***************************************************************************************************************!*\
   !*** E:/Workspaces/ws-book-front-app/uni_modules/uni-pagination/components/uni-pagination/uni-pagination.vue ***!
   \***************************************************************************************************************/
@@ -474,7 +474,7 @@ __webpack_require__.r(__webpack_exports__);
     'uni_modules/uni-pagination/components/uni-pagination/uni-pagination-create-component',
     {
         'uni_modules/uni-pagination/components/uni-pagination/uni-pagination-create-component':(function(module, exports, __webpack_require__){
-            __webpack_require__('2')['createComponent'](__webpack_require__(132))
+            __webpack_require__('2')['createComponent'](__webpack_require__(86))
         })
     },
     [['uni_modules/uni-pagination/components/uni-pagination/uni-pagination-create-component']]

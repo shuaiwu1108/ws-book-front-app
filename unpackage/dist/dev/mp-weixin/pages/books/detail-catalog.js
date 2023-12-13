@@ -103,10 +103,10 @@ var components
 try {
   components = {
     mpHtml: function () {
-      return Promise.all(/*! import() | uni_modules/mp-html/components/mp-html/mp-html */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/mp-html/components/mp-html/mp-html")]).then(__webpack_require__.bind(null, /*! @/uni_modules/mp-html/components/mp-html/mp-html.vue */ 123))
+      return Promise.all(/*! import() | uni_modules/mp-html/components/mp-html/mp-html */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/mp-html/components/mp-html/mp-html")]).then(__webpack_require__.bind(null, /*! @/uni_modules/mp-html/components/mp-html/mp-html.vue */ 78))
     },
     uniPagination: function () {
-      return Promise.all(/*! import() | uni_modules/uni-pagination/components/uni-pagination/uni-pagination */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-pagination/components/uni-pagination/uni-pagination")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-pagination/components/uni-pagination/uni-pagination.vue */ 132))
+      return Promise.all(/*! import() | uni_modules/uni-pagination/components/uni-pagination/uni-pagination */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-pagination/components/uni-pagination/uni-pagination")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-pagination/components/uni-pagination/uni-pagination.vue */ 86))
     },
   }
 } catch (e) {
@@ -209,12 +209,6 @@ exports.default = void 0;
 //
 //
 //
-//
-//
-//
-//
-//
-//
 var _default = {
   data: function data() {
     return {
@@ -224,15 +218,15 @@ var _default = {
       dataList: [],
       catalogInfo: '',
       anchor: true,
-      top: 0,
       ctx: null
     };
   },
   onLoad: function onLoad(event) {
-    this.ctx = this.$refs.article;
-    this.ctx.in(this, '#scroll', 'top');
     this.load(event.bookCatalog);
     this.getCurrentLocation(this.bookCatalog);
+  },
+  onReady: function onReady() {
+    this.ctx = this.$refs.article;
   },
   methods: {
     load: function load(e) {
@@ -272,7 +266,7 @@ var _default = {
           var data = result.data;
           _this2.load(encodeURIComponent(JSON.stringify(data)));
           _this2.getCurrentLocation(_this2.bookCatalog);
-          _this2.ctx.navigateTo('top').then(function () {
+          _this2.ctx.navigateTo().then(function () {
             console.log('跳转成功');
           }).catch(function (err) {
             console.log('跳转失败：', err);
