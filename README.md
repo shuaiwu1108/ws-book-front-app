@@ -17,3 +17,13 @@
 
 ## 注意事项
 * 非 App-nvue 平台暂不支持下拉刷新
+
+## 配套的Java后台、前端管理系统
+
+* [前端](https://github.com/shuaiwu1108/ws-book-front)
+* [后端](https://github.com/shuaiwu1108/ws-book)
+
+## 页面
+![01.png](static/01.jpg)
+![02.png](static/02.jpg)
+![03.png](static/03.jpg)
