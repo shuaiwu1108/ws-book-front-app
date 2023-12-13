@@ -1,10 +1,7 @@
 import App from './App.vue'
 
-// const host = 'http://127.0.0.1:9090';
-// const miniourl = 'http://192.168.0.244:9000';
-
-const host = 'http://223.76.234.112:9293/ltqf'
-const miniourl = 'http://223.76.234.112:9293/minio';
+const host = 'http://127.0.0.1:9090';
+const miniourl = 'http://192.168.0.244:9000';
 
 // #ifndef VUE3
 import Vue from 'vue'
