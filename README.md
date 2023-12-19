@@ -1,4 +1,4 @@
-# ws-book-front
+# ws-book-front-app
 基于uni-app开发的小说阅读App模板
 
 ## 特点
